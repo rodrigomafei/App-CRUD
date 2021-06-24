@@ -3,9 +3,28 @@
     x:Class="CRUD.Views.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:CRUD.ViewModels"
     Title="{Binding Title}">
 
-    <Grid Padding="5" RowDefinitions="Auto,Auto,*">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding AddNewCompanyCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    Glyph="&#xf055;"
+                    Size="Large">
+                    <FontImageSource.FontFamily>
+                        <OnPlatform
+                            x:TypeArguments="x:String"
+                            Android="fa-solid-900.ttf#Font Awesome 5 Free Solid"
+                            iOS="Font Awesome 5 Free" />
+                    </FontImageSource.FontFamily>
+
+                </FontImageSource>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <Grid Padding="2" RowDefinitions="Auto,Auto,*">
 
         <Grid x:Name="LocationGrid">
             <Label
@@ -34,14 +53,63 @@
                                             Source="{Binding ImagePath}" />
                                     </StackLayout>
                                     <Grid Grid.Row="1">
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="Medium"
-                                            Text="{Binding Name}" />
+                                        <StackLayout>
+
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="Medium"
+                                                MaxLines="2"
+                                                Text="{Binding Name}" />
+
+                                            <Grid>
+
+                                                <StackLayout Orientation="Horizontal">
+
+                                                    <StackLayout Orientation="Horizontal">
+
+                                                        <Label FontSize="Small" Text="&#xf005;">
+                                                            <Label.FontFamily>
+                                                                <OnPlatform
+                                                                    x:TypeArguments="x:String"
+                                                                    Android="fa-solid-900.ttf#Font Awesome 5 Free Solid"
+                                                                    iOS="Font Awesome 5 Free" />
+                                                            </Label.FontFamily>
+                                                        </Label>
+
+                                                        <Label FontSize="Small" Text="{Binding Note}" />
+
+                                                    </StackLayout>
+
+                                                    <StackLayout Orientation="Horizontal">
+
+                                                        <Label FontSize="Small" Text="&#xf041;">
+                                                            <Label.FontFamily>
+                                                                <OnPlatform
+                                                                    x:TypeArguments="x:String"
+                                                                    Android="fa-solid-900.ttf#Font Awesome 5 Free Solid"
+                                                                    iOS="Font Awesome 5 Free" />
+                                                            </Label.FontFamily>
+                                                        </Label>
+
+                                                        <Label FontSize="Small" Text="{Binding DistancePresentation}" />
+
+                                                    </StackLayout>
+
+                                                </StackLayout>
+
+                                            </Grid>
+
+
+                                        </StackLayout>
+
                                     </Grid>
                                 </Grid>
 
                             </Frame>
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageViewModel}}, Path=CompanyTapCommand}" CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
 
                         </Grid>
                     </DataTemplate>

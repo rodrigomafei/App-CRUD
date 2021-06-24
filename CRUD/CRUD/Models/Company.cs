@@ -12,6 +12,14 @@ namespace CRUD.Models
         public string ImagePath { get; set; }
         public float Note { get; set; }
 
+        public string DistancePresentation 
+        {
+            get
+            {
+                return string.Format("{0} Km", Distance);
+            }
+        }
+
         public Company()
         {
 

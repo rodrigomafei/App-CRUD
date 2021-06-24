@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Essentials;
 
 namespace CRUD.ViewModels
@@ -17,14 +18,20 @@ namespace CRUD.ViewModels
     {
         public ICompanyService CompanyService { get; set; }
 
+
+
         public MainPageViewModel(INavigationService navigationService, ICompanyService companyService)
             : base(navigationService)
         {
             Util.Mock.DatabaseMock.InitializeMockDataBase();
 
-            Title = "CRUD App";
+            Title = "DeliveryPizzas";
 
             CompanyService = companyService;
+
+            CompanyTapCommand = new DelegateCommand<Company>(OpenCompanyOptions);
+            AddNewCompanyCommand = new DelegateCommand(AddNewCompany);
+            DeleteCompanyCommand = new DelegateCommand<Company>(DeleteCompany);
         }
 
         public async override void OnNavigatedTo(INavigationParameters parameters)
@@ -71,6 +78,58 @@ namespace CRUD.ViewModels
 
             CompanyList = new ObservableCollection<Company>(list.OrderBy(x => x.Distance).ThenBy(x => x.Name));
         }
+
+        private async void OpenCompanyOptions(Company company)
+        {
+            try
+            
+            {
+
+            }
+
+            catch(Exception e)
+            {
+
+            }
+        }
+
+        private async void AddNewCompany()
+        {
+            try
+
+            {
+
+            }
+
+            catch (Exception e)
+            {
+
+            }
+        }
+
+
+        private async void DeleteCompany(Company company)
+        {
+            try
+
+            {
+
+            }
+
+            catch (Exception e)
+            {
+
+            }
+        }
+
+
+        #region Commands
+
+        public ICommand CompanyTapCommand{ get; set;}
+        public ICommand AddNewCompanyCommand { get; set; }
+        public ICommand DeleteCompanyCommand { get; set; }
+
+        #endregion
 
         #region Props
 
