@@ -1,3 +1,5 @@
+using CRUD.Services;
+using CRUD.Services.Interfaces;
 using CRUD.ViewModels;
 using CRUD.Views;
 using Prism;
@@ -28,6 +30,13 @@ namespace CRUD
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+
+            #region Services
+
+            containerRegistry.Register<ICompanyService, CompanyService>();
+
+            #endregion
         }
+
     }
 }
