@@ -22,23 +22,24 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
+        <ScrollView>
+            <Grid Padding="3">
+                <Frame>
+                    <StackLayout>
 
-        <Grid Padding="3">
-            <Frame>
-                <StackLayout>
+                        <Label Text="Nome" />
+                        <Entry Text="{Binding SelectedCompany.Name, Mode=TwoWay}" />
 
-                    <Label Text="Nome" />
-                    <Entry Text="{Binding SelectedCompany.Name, Mode=TwoWay}" />
+                        <Label Text="Nota" />
+                        <Entry Keyboard="Numeric" Text="{Binding SelectedCompany.Note, Mode=TwoWay}" />
 
-                    <Label Text="Nota" />
-                    <Entry Keyboard="Numeric" Text="{Binding SelectedCompany.Note, Mode=TwoWay}" />
-
-                    <Label Text="Distância" />
-                    <Entry Keyboard="Numeric" Text="{Binding SelectedCompany.Distance, Mode=TwoWay}" />
+                        <Label Text="Distância" />
+                        <Entry Keyboard="Numeric" Text="{Binding SelectedCompany.Distance, Mode=TwoWay}" />
 
 
-                </StackLayout>
-            </Frame>
-        </Grid>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
