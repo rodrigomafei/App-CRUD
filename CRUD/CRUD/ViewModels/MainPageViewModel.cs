@@ -59,7 +59,7 @@ namespace CRUD.ViewModels
 
             CurrentAddress = new Placemark
             {
-                Thoroughfare = "Não encontrado"
+                Thoroughfare = "Endereço não encontrado"
             };
 
             var hasPermission = await Util.PermissionHelper.RequestLocationPermission();
