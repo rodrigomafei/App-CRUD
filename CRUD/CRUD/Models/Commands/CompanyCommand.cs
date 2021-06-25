@@ -46,16 +46,16 @@ namespace CRUD.Models.Commands
                 var errorMsg = string.Empty;
 
                 if (string.IsNullOrWhiteSpace(Name))
-                    errorMsg += "Nome inválido\n";
+                    errorMsg += "Necessário preencher o nome\n";
 
                 if (string.IsNullOrWhiteSpace(ImagePath))
                     errorMsg += "Imagem inválida\n";
 
                 if (Distance < 0)
-                    errorMsg += "Distância inválida\n";
+                    errorMsg += "A distância não pode ser menor que zero\n";
 
                 if (Note < 1 || Note > 5)
-                    errorMsg += "Nota inválida\n";
+                    errorMsg += "A nota deve ser entre 1 e 5\n";
 
                 return errorMsg;
             } 

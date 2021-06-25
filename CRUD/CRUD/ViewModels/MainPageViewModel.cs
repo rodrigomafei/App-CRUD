@@ -1,6 +1,7 @@
 ﻿using CRUD.Models;
 using CRUD.Services.Interfaces;
 using CRUD.Util;
+using CRUD.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -29,9 +30,8 @@ namespace CRUD.ViewModels
             )
             : base(navigationService)
         {
-            Util.Mock.DatabaseMock.InitializeMockDataBase();
 
-            Title = "DeliveryPizzas";
+            Title = "Delivery Pizzas";
 
             CompanyService = companyService;
             PageDialogService = pageDialogService;
@@ -54,6 +54,9 @@ namespace CRUD.ViewModels
 
         private async Task GetCurrentAddress()
         {
+            if (CurrentAddress != null)
+                return;
+
             CurrentAddress = new Placemark
             {
                 Thoroughfare = "Não encontrado"
@@ -95,6 +98,11 @@ namespace CRUD.ViewModels
                 {
                     case Constants.Edit:
 
+                        await NavigationService.NavigateAsync(nameof(CompanyEditPage), new NavigationParameters
+                        {
+                            {Constants.Company, company }
+                        });
+
                         break;
 
                     case Constants.Remove:
@@ -113,9 +121,8 @@ namespace CRUD.ViewModels
         private async void AddNewCompany()
         {
             try
-
             {
-
+                await NavigationService.NavigateAsync(nameof(CompanyEditPage));
             }
 
             catch (Exception e)

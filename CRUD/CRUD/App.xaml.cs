@@ -22,6 +22,8 @@ namespace CRUD
             InitializeComponent();
 
             await NavigationService.NavigateAsync("NavigationPage/MainPage");
+
+            Util.Mock.DatabaseMock.InitializeMockDataBase();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -30,6 +32,7 @@ namespace CRUD
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<CompanyEditPage, CompanyEditViewModel>();
 
             #region Services
 

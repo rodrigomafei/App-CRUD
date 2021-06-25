@@ -24,5 +24,10 @@ namespace CRUD.Util.Mock
                 new Company("Top Pizza")
             };
         }
+
+        public static string GenerateId()
+        {
+            return Guid.NewGuid().ToString();
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace CRUD.Util
         public const string Cancel = "Cancelar";
         public const string Edit = "Editar";
         public const string Remove = "Remover";
+        public const string Company = "Company";
     }
 }
