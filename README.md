@@ -1,1 +1,1 @@
-App de testes, que simula um app para encontrar pizzarias próximas.
+Este é um aplicativo para testes. O intuito é simular um app que localiza pizzarias próximas ao usuário.
