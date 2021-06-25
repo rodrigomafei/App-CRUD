@@ -1,8 +1,10 @@
 ﻿using CRUD.Models;
 using CRUD.Services.Interfaces;
+using CRUD.Util;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,10 +19,14 @@ namespace CRUD.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
         public ICompanyService CompanyService { get; set; }
+        public IPageDialogService PageDialogService { get; set; }
 
 
-
-        public MainPageViewModel(INavigationService navigationService, ICompanyService companyService)
+        public MainPageViewModel(
+            INavigationService navigationService,
+            ICompanyService companyService, 
+            IPageDialogService pageDialogService
+            )
             : base(navigationService)
         {
             Util.Mock.DatabaseMock.InitializeMockDataBase();
@@ -28,10 +34,10 @@ namespace CRUD.ViewModels
             Title = "DeliveryPizzas";
 
             CompanyService = companyService;
+            PageDialogService = pageDialogService;
 
             CompanyTapCommand = new DelegateCommand<Company>(OpenCompanyOptions);
             AddNewCompanyCommand = new DelegateCommand(AddNewCompany);
-            DeleteCompanyCommand = new DelegateCommand<Company>(DeleteCompany);
         }
 
         public async override void OnNavigatedTo(INavigationParameters parameters)
@@ -82,9 +88,20 @@ namespace CRUD.ViewModels
         private async void OpenCompanyOptions(Company company)
         {
             try
-            
             {
+                var action = await PageDialogService.DisplayActionSheetAsync(company.Name, Constants.Cancel, null, Constants.Edit, Constants.Remove);
 
+                switch (action)
+                {
+                    case Constants.Edit:
+
+                        break;
+
+                    case Constants.Remove:
+                        await DeleteCompany(company);
+                        break;
+
+                }
             }
 
             catch(Exception e)
@@ -108,12 +125,25 @@ namespace CRUD.ViewModels
         }
 
 
-        private async void DeleteCompany(Company company)
+        private async Task DeleteCompany(Company company)
         {
             try
-
             {
+                var confirm = await PageDialogService.DisplayAlertAsync(company.Name, "Deseja realmente remover?", Constants.Confirm, Constants.Cancel);
 
+                if (!confirm)
+                    return;
+
+                var removed = CompanyService.Delete(company.Id);
+
+                if (!removed)
+                {
+                    await PageDialogService.DisplayAlertAsync("Falha", "Não foi possível remover, por favor tente novamente mais tarde", "Ok", null);
+
+                    return;
+                }
+
+                CompanyList.Remove(company);
             }
 
             catch (Exception e)
@@ -127,7 +157,6 @@ namespace CRUD.ViewModels
 
         public ICommand CompanyTapCommand{ get; set;}
         public ICommand AddNewCompanyCommand { get; set; }
-        public ICommand DeleteCompanyCommand { get; set; }
 
         #endregion
 

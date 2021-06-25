@@ -9,9 +9,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding AddNewCompanyCommand}">
             <ToolbarItem.IconImageSource>
-                <FontImageSource
-                    Glyph="&#xf055;"
-                    Size="Large">
+                <FontImageSource Glyph="&#xf055;" Size="Large">
                     <FontImageSource.FontFamily>
                         <OnPlatform
                             x:TypeArguments="x:String"
@@ -114,6 +112,15 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <Grid>
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="Nenhuma pizzaria cadastrada"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </CollectionView.EmptyView>
 
             </CollectionView>
 
