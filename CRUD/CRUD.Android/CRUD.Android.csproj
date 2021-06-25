@@ -109,7 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CRUD\CRUD.csproj">
-      <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
+      <Project>{284FFE96-8F9F-49E0-89F9-F9A2D13E1C9B}</Project>
       <Name>CRUD</Name>
     </ProjectReference>
   </ItemGroup>

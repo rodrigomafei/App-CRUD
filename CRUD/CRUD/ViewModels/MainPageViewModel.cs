@@ -47,9 +47,9 @@ namespace CRUD.ViewModels
 
         private async Task LoadData()
         {
-            await GetCurrentAddress();
-
             GetCompanies();
+
+            await GetCurrentAddress();
         }
 
         private async Task GetCurrentAddress()

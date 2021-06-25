@@ -21,9 +21,9 @@ namespace CRUD
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
-
             Util.Mock.DatabaseMock.InitializeMockDataBase();
+
+            await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
